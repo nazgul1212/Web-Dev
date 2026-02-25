@@ -1,0 +1,30 @@
+<div class="product-grid">
+  @for (p of products; track p.id) {
+    <div class="product-card">
+      <img [src]="p.image" class="main-img" [alt]="p.name">
+
+      <div class="gallery">
+        @for (img of p.images; track img) {
+          <img 
+            [src]="img" 
+            (click)="p.image = img" 
+            class="thumb-img"
+            [class.active]="p.image === img">
+        }
+      </div>
+
+      <h3>{{ p.name }}</h3>
+      <p class="description">{{ p.description }}</p>
+      
+      <div class="details">
+        <div class="price">{{ p.price }} ₸</div>
+        <div class="rating">⭐ {{ p.rating }}</div>
+      </div>
+
+      <div class="actions">
+        <a [href]="p.link" target="_blank" class="buy-btn">Buy on Kaspi</a>
+        <button (click)="share(p)" class="share-btn">Share in Telegram</button>
+      </div>
+    </div>
+  }
+</div>
